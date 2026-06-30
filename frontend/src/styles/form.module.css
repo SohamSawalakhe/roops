@@ -20,58 +20,10 @@
   z-index: 0;
 }
 
-/* ---- Image Panel ---- */
-.imagePanel {
-  flex: 0.85;
-  position: relative;
-  background-image: url('/brand-hero.png');
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-}
-
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.05) 50%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
-}
-
-.imageBrandTag {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  z-index: 1;
-}
-
-.imageBrandName {
-  font-family: var(--font-heading);
-  font-size: var(--font-size-2xl);
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 0.08em;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.imageBrandSub {
-  font-family: var(--font-body);
-  font-size: var(--font-size-sm);
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
 /* ---- Form Panel ---- */
 .formPanel {
-  flex: 1.15;
+  flex: 1;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,30 +252,12 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 900px) {
-  .main {
-    flex-direction: column;
-  }
-
-  .imagePanel {
-    min-height: 30vh;
-    flex: none;
-  }
-
   .formPanel {
     padding: var(--space-xl) var(--space-lg);
-  }
-
-  .imageBrandTag {
-    bottom: 1.5rem;
-    left: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .imagePanel {
-    min-height: 25vh;
-  }
-
   .formPanel {
     padding: var(--space-lg) var(--space-md);
   }

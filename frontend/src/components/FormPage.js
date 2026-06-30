@@ -215,14 +215,6 @@ export default function FormPage() {
     <main className={styles.main}>
       <div className={styles.bgPattern} aria-hidden="true" />
 
-      <section className={styles.imagePanel}>
-        <div className={styles.imageOverlay} />
-        <div className={styles.imageBrandTag}>
-          <span className={styles.imageBrandName}>Roop Sari Palace</span>
-          <span className={styles.imageBrandSub}>Indian Ethnic Wear</span>
-        </div>
-      </section>
-
       <section className={styles.formPanel}>
         <div className={styles.formWrapper}>
           <div className={styles.brandHeader}>
