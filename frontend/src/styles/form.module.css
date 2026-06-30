@@ -1,0 +1,392 @@
+/* ============================================
+   Customer Info Form – Tablet Optimized
+   ============================================ */
+
+.main {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Background Pattern ---- */
+.bgPattern {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(183, 158, 140, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(201, 169, 110, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Image Panel ---- */
+.imagePanel {
+  flex: 0.85;
+  position: relative;
+  background-image: url('/brand-hero.png');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+}
+
+.imageBrandTag {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 1;
+}
+
+.imageBrandName {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.imageBrandSub {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ---- Form Panel ---- */
+.formPanel {
+  flex: 1.15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-2xl);
+  background: var(--color-bg);
+  position: relative;
+  z-index: 1;
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 480px;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ---- Brand Header ---- */
+.brandHeader {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.brandLogoContainer {
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brandLogoImage {
+  max-height: 70px;
+  width: auto;
+  object-fit: contain;
+}
+
+.formTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.35;
+  margin-bottom: var(--space-sm);
+}
+
+.titleAccent {
+  background: linear-gradient(135deg, var(--color-primary-hover), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.formSubtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ---- Divider ---- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border),
+    transparent
+  );
+}
+
+.dividerIcon {
+  color: var(--color-primary);
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+/* ---- Form ---- */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: var(--space-sm);
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+  font-size: var(--font-size-lg);
+  padding: 1.1rem;
+  min-height: 56px;
+}
+
+.serverError {
+  background: var(--color-error-light);
+  color: var(--color-error);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.disclaimer {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.disclaimer a {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.disclaimer a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* ---- Success Screen ---- */
+.successContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-2xl);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  animation: scaleIn 0.6s ease forwards;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(183, 158, 140, 0.08) 0%, transparent 60%);
+}
+
+.successIcon {
+  margin-bottom: var(--space-xl);
+}
+
+.successCircle {
+  stroke-dasharray: 226;
+  stroke-dashoffset: 226;
+  animation: checkmark 1s ease-out 0.3s forwards;
+}
+
+.successCheck {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: checkmark 0.6s ease-out 0.9s forwards;
+}
+
+.successTitle {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-md);
+}
+
+.successText {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: var(--space-lg);
+}
+
+.successBtn {
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+  min-height: 56px;
+  padding: 1rem 3rem;
+  font-size: var(--font-size-lg);
+}
+
+/* Auto-reset countdown bar */
+.countdownBar {
+  width: 100%;
+  max-width: 300px;
+  height: 4px;
+  background: var(--color-border-light);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-xl);
+  overflow: hidden;
+}
+
+.countdownFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+  border-radius: var(--radius-full);
+  animation: countdown 5s linear forwards;
+}
+
+.countdownText {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--space-sm);
+}
+
+/* ---- Confetti ---- */
+.confettiContainer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  top: -10px;
+  border-radius: 2px;
+  animation: confetti-fall linear forwards;
+  opacity: 0.9;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .imagePanel {
+    min-height: 30vh;
+    flex: none;
+  }
+
+  .formPanel {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .imageBrandTag {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .imagePanel {
+    min-height: 25vh;
+  }
+
+  .formPanel {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .formTitle {
+    font-size: var(--font-size-xl);
+  }
+
+  .formWrapper {
+    max-width: 100%;
+  }
+}
+
+/* ---- Tablet landscape optimization ---- */
+@media (min-width: 768px) and (max-width: 1194px) {
+  .formPanel {
+    padding: var(--space-xl) var(--space-2xl);
+  }
+
+  .formWrapper {
+    max-width: 440px;
+  }
+
+  .form-input {
+    font-size: var(--font-size-lg);
+    padding: 1.1rem 1.25rem;
+    min-height: 56px;
+  }
+
+  .submitBtn {
+    min-height: 60px;
+    font-size: var(--font-size-lg);
+  }
+}
+
+.installBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  margin-top: 1.25rem;
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  min-height: 54px;
+  transition: all 0.25s ease;
+}
+
+.installBtn:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(183, 158, 140, 0.2);
+}
+
+.installBtn:active {
+  transform: translateY(0);
+}
+
