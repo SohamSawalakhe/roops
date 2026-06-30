@@ -2,11 +2,14 @@
   "name": "Roop Sari Palace Customer Form",
   "short_name": "Roop Sari",
   "description": "Customer information form for Roop Sari Palace in-store tablet.",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#b79e8c",
   "orientation": "any",
+  "categories": ["productivity", "business"],
   "icons": [
     {
       "src": "/icon-192.png",

@@ -68,6 +68,14 @@
   text-transform: uppercase;
 }
 
+/* Subtitle variant for forgot password steps (longer sentences, no uppercase) */
+.loginSubtitle.forgotSubtitle {
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.5;
+  margin-top: var(--space-xs);
+}
+
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -87,10 +95,97 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   transition: color var(--transition-base);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .backLink:hover {
   color: var(--color-primary-hover);
+}
+
+/* Forgot password link (inline text button below login form) */
+.forgotLink {
+  display: inline-block;
+  margin-top: var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-base), opacity var(--transition-base);
+}
+
+.forgotLink:hover {
+  color: var(--color-primary-hover);
+  opacity: 0.85;
+}
+
+/* Info box on forgot-request step */
+.forgotInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+}
+
+.forgotIcon {
+  font-size: 2.5rem;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.forgotInfo p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Error message on forgot flow */
+.forgotError {
+  margin: 0 0 var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(220, 38, 38, 0.06);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: var(--radius-sm);
+  color: #dc2626;
+  font-size: var(--font-size-sm);
+  text-align: left;
+}
+
+/* Success banner shown on login page after reset */
+.forgotSuccessBanner {
+  margin-bottom: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--radius-sm);
+  color: #059669;
+  font-size: var(--font-size-sm);
+  text-align: left;
+  line-height: 1.5;
+}
+
+/* OTP 6-digit input — large centered monospace */
+.otpInput {
+  font-family: monospace;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-align: center;
+  padding: var(--space-md);
+  color: var(--color-text);
 }
 
 /* ---- Dashboard ---- */

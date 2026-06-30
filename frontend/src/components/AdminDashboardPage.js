@@ -100,8 +100,22 @@ export default function AdminDashboardPage() {
   );
 
   useEffect(() => {
-    fetchCustomers();
-  }, [fetchCustomers]);
+    // Verify JWT session on mount before fetching data
+    const verifySession = async () => {
+      try {
+        const res = await fetch("/api/admin/verify");
+        if (!res.ok) {
+          router.push("/admin");
+          return;
+        }
+      } catch {
+        router.push("/admin");
+        return;
+      }
+      fetchCustomers();
+    };
+    verifySession();
+  }, [fetchCustomers, router]);
 
   // Debounced search
   useEffect(() => {
