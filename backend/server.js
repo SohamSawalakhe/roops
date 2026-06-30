@@ -7,6 +7,8 @@ import { fileURLToPath } from "node:url";
 import prisma from "./lib/prisma.js";
 import { verifyToken, signToken, createTokenCookie, clearTokenCookie } from "./lib/auth.js";
 import { appendToSheet } from "./lib/googleSheets.js";
+import { encrypt, decrypt } from "./lib/crypto.js";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -203,8 +205,8 @@ app.delete("/api/customers", async (req, res) => {
 app.post("/api/admin/login", async (req, res) => {
   try {
     const { password } = req.body;
-    const adminSecret = process.env.ADMIN_SECRET;
-    const masterSecret = process.env.MASTER_SECRET || "RoopSariPalaceMaster2026!@";
+    const adminSecret = decrypt(process.env.ADMIN_SECRET);
+    const masterSecret = decrypt(process.env.MASTER_SECRET || "RoopSariPalaceMaster2026!@");
 
     if (!adminSecret) {
       return res.status(503).json({ error: "Admin access is not configured" });
@@ -241,8 +243,8 @@ app.post("/api/admin/change-password", async (req, res) => {
 
   try {
     const { currentPassword, newPassword } = req.body;
-    const adminSecret = process.env.ADMIN_SECRET;
-    const masterSecret = process.env.MASTER_SECRET || "RoopSariPalaceMaster2026!@";
+    const adminSecret = decrypt(process.env.ADMIN_SECRET);
+    const masterSecret = decrypt(process.env.MASTER_SECRET || "RoopSariPalaceMaster2026!@");
 
     let envKeyToUpdate = null;
     if (currentPassword === adminSecret) {
@@ -272,17 +274,27 @@ app.post("/api/admin/change-password", async (req, res) => {
       usingPath = envPath;
     }
 
-    const regex = new RegExp(`^${envKeyToUpdate}=.*$`, "m");
-    if (regex.test(envContent)) {
-      envContent = envContent.replace(regex, `${envKeyToUpdate}=${newPassword.trim()}`);
-    } else {
-      envContent += `\n${envKeyToUpdate}=${newPassword.trim()}`;
+    const encryptedNewPassword = encrypt(newPassword.trim());
+
+    // Update securely using line-by-line logic
+    const lines = envContent.split(/\r?\n/);
+    let replaced = false;
+    for (let i = 0; i < lines.length; i++) {
+      if (lines[i].trim().startsWith(`${envKeyToUpdate}=`)) {
+        lines[i] = `${envKeyToUpdate}=${encryptedNewPassword}`;
+        replaced = true;
+        break;
+      }
     }
+    if (!replaced) {
+      lines.push(`${envKeyToUpdate}=${encryptedNewPassword}`);
+    }
+    envContent = lines.join("\n");
 
     await fs.writeFile(usingPath, envContent, "utf-8");
     
     // Update process.env at runtime
-    process.env[envKeyToUpdate] = newPassword.trim();
+    process.env[envKeyToUpdate] = encryptedNewPassword;
 
     return res.json({ success: true, message: `${envKeyToUpdate === "MASTER_SECRET" ? "Master" : "Admin"} password updated successfully!` });
   } catch (error) {
